@@ -19,7 +19,7 @@ const Cell = ({ go, setGo, id, cells, setCells, cell, winning }: CellProps) => {
 
     const handleCellChange = (cellToChange: string) => {
     if (!cells || id < 0 || id >= cells.length) return; 
-    let copyCells = [...cells];
+    const copyCells = [...cells];
     copyCells[id] = cellToChange;
     setCells(copyCells);
 };
