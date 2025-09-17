@@ -20,18 +20,18 @@ export default function Home() {
 
   useEffect(() => {
     if (winning) return;
-    winningCombinations.forEach((combo) => {
+
+    let win = "";
+    for (const combo of winningCombinations) {
       const circlewins = combo.every((cell) => cells[cell] === "circle");
       const crosswins = combo.every((cell) => cells[cell] === "cross");
+      if (circlewins) win = "Circle Wins!";
+      if (crosswins) win = "Cross Wins!";
+    }
 
-      if (circlewins) {
-        setWinning("Circle Wins!");
-      } else if (crosswins) {
-        setWinning("Cross Wins!");
-      }
-    });
-
-    if (!winning && cells.every((cell) => cell !== "")) {
+    if (win) {
+      setWinning(win);
+    } else if (cells.every((cell) => cell !== "")) {
       setWinning("It's a Draw!");
     }
   }, [cells, winning]);
